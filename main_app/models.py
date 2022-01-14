@@ -8,8 +8,11 @@ class Finch(models.Model):
   habitat = models.TextField(max_length=250)
   threats = models.TextField(max_length=250)
   
-  # def __str__(self):
-  #   return f"({self.id}) - {self.name}"
+  def __str__(self):
+    return self.name
+    
+  def get_absolute_url(self):
+    return reverse('finches_detail', kwargs={'finch_id': self.id})
 
     
 

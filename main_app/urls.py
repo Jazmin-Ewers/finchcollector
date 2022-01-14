@@ -14,4 +14,10 @@ urlpatterns = [
     # 'finches/create - Finches Create Route'
     path('finches/create/', views.FinchCreate.as_view(), name='finches_create'),
 
+    # 'finches/<int:pk>/update - Finches Update Route'
+    path('finches/<int:pk>/update', views.FinchUpdate.as_view(), name='finches_update'),
+
+    # 'finches/<int:pk>/delete - Finches Delete Route'
+    path('finches/<int:pk>/delete', views.FinchDelete.as_view(), name='finches_delete'),
+
 ]
