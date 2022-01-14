@@ -8,9 +8,9 @@ MEALS = (
     ('D', 'Dinner')
 )
 
-f = Finch(species="American Goldfinch", population="43 million", habitat="Open habitats, fields, forest edges, open woodlands", threats="Cat predation, glass collisions")
-f = Finch(species="Lawrence's Goldfinch", population="240,000", habitat="Chaparral, dry areas near water", threats="Habitat loss, introduction of invasive species")
-f = Finch(species="Lesser Goldfinch", population="4.7 million", habitat="Brushy areas, forest edges, gardens", threats="Loss of riparian habitat")
+# f = Finch(species="American Goldfinch", population="43 million", habitat="Open habitats, fields, forest edges, open woodlands", threats="Cat predation, glass collisions")
+# f = Finch(species="Lawrence's Goldfinch", population="240,000", habitat="Chaparral, dry areas near water", threats="Habitat loss, introduction of invasive species")
+# f = Finch(species="Lesser Goldfinch", population="4.7 million", habitat="Brushy areas, forest edges, gardens", threats="Loss of riparian habitat")
 
 # Create your models here.
 class Finch(models.Model):
