@@ -20,4 +20,7 @@ urlpatterns = [
     # 'finches/<int:pk>/delete - Finches Delete Route'
     path('finches/<int:pk>/delete', views.FinchDelete.as_view(), name='finches_delete'),
 
+    # 'finches/<int:finch_id>/add_feeding - Add Finch's feeding Route'
+    path('finches/<int:finch_id>/add_feeding/', views.add_feeding, name='add_feeding'),
+
 ]
