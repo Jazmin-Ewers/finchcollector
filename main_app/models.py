@@ -1,5 +1,16 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
+
+MEALS = (
+    ('B', 'Breakfast'),
+    ('L', 'Lunch'),
+    ('D', 'Dinner')
+)
+
+f = Finch(species="American Goldfinch", population="43 million", habitat="Open habitats, fields, forest edges, open woodlands", threats="Cat predation, glass collisions")
+f = Finch(species="Lawrence's Goldfinch", population="240,000", habitat="Chaparral, dry areas near water", threats="Habitat loss, introduction of invasive species")
+f = Finch(species="Lesser Goldfinch", population="4.7 million", habitat="Brushy areas, forest edges, gardens", threats="Loss of riparian habitat")
 
 # Create your models here.
 class Finch(models.Model):
@@ -9,10 +20,22 @@ class Finch(models.Model):
   threats = models.TextField(max_length=250)
   
   def __str__(self):
-    return self.name
+    return self.species
     
   def get_absolute_url(self):
     return reverse('finches_detail', kwargs={'finch_id': self.id})
 
-    
+class Feeding(models.Model):
+  date = models.DateField()
+  meal = models.CharField(
+    max_length=1,
+    choices=MEALS,
+    default=MEALS[0][0]
+  )
+  finch = models.ForeignKey(Finch, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"{self.get_meal_display()} on {self.date}"
+
+
 
