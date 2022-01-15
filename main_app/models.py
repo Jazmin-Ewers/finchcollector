@@ -12,12 +12,23 @@ MEALS = (
 # f = Finch(species="Lawrence's Goldfinch", population="240,000", habitat="Chaparral, dry areas near water", threats="Habitat loss, introduction of invasive species")
 # f = Finch(species="Lesser Goldfinch", population="4.7 million", habitat="Brushy areas, forest edges, gardens", threats="Loss of riparian habitat")
 
-# Create your models here.
+class Toy(models.Model):
+  name = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('toys_detail', kwargs={'pk': self.id})
+
+    
 class Finch(models.Model):
   species = models.CharField(max_length=100)
   population = models.CharField(max_length=100)
   habitat = models.TextField(max_length=250)
   threats = models.TextField(max_length=250)
+  toys = models.ManyToManyField(Toy)
   
   def __str__(self):
     return self.species
