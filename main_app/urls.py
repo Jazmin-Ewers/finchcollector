@@ -5,6 +5,9 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
 
+    # 'tables/' - Finches and Toys Route'
+    path('tables/', views.finches_toys_index, name='finches_toys_index'),
+
     # 'finches/' - Finches Index Route
     path('finches/', views.finches_index, name='finches_index'),
 

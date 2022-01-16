@@ -11,6 +11,9 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+def finches_toys_index(request):
+  return render(request, 'finches_toys_index.html')
+
 def finches_index(request):
   finches = Finch.objects.all()
   return render(request, 'finches/index.html', {'finches': finches})
