@@ -13,21 +13,32 @@ footer.page-footer {
   text-align: right;
 }
 
-.row {
+.list-group-item {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
   display: table;
-  width: 100%;
+  clear: both;
 }
 
-.lane {
-  display: inline-block;
-  width: 33.333%;
-  float: none;
-  min-height: 300px;
-}
 
-.task {
-  box-shadow: 2px 2px 2px #ccc;
-  display: inline-block;
-  background: gold;
-  padding: 5px;
-}
+
+
+
+

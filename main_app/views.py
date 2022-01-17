@@ -11,12 +11,13 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
-def finches_toys_index(request):
-  return render(request, 'finches_toys_index.html')
-
 def finches_index(request):
   finches = Finch.objects.all()
   return render(request, 'finches/index.html', {'finches': finches})
+
+def finches_toys_index(request):
+  finches = Finch.objects.all()
+  return render(request, 'finches_toys_index.html', {'finches': finches})
   
 def finches_detail(request, finch_id):
   finch = Finch.objects.get(id=finch_id)
@@ -36,6 +37,11 @@ class FinchCreate(CreateView):
 class FinchUpdate(UpdateView):
   model = Finch
   fields = ['population', 'habitat', 'threats']
+
+class SkillCreate(CreateView):
+  model = Finch
+  fields = ['species', 'population']
+  success_url = '/tables/'
 
 class FinchDelete(DeleteView):
   model = Finch
@@ -75,6 +81,8 @@ def assoc_toy(request, finch_id, toy_id):
 def unassoc_toy(request, finch_id, toy_id):
   Finch.objects.get(id=finch_id).toys.remove(toy_id)
   return redirect('finches_detail', finch_id=finch_id)
+
+
 
 
 

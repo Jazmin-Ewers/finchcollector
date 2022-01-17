@@ -5,8 +5,14 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
 
-    # 'tables/' - Finches and Toys Route'
+    # 'tables/' - Tables'
     path('tables/', views.finches_toys_index, name='finches_toys_index'),
+
+    # 'tables/create_skill' - Create New Skill'
+    path('tables/create_skill/', views.SkillCreate.as_view(), name='create_skill'),
+
+    # 'tables/add_skill_to_resume' - Add Skill to the Resume'
+    path('tables/add_skill_to_resume/', views.SkillCreate.as_view(), name='add_skill_to_resume'),
 
     # 'finches/' - Finches Index Route
     path('finches/', views.finches_index, name='finches_index'),

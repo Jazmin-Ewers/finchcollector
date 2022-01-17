@@ -1,82 +1,61 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<h2>Resume Architect</h2>
 
-<div class='row'>
-    <div class="lane droptarget">
-        <h1>Database of Skills, Projects...</h1>
-        <div class="task" draggable="true">
-            <p> Skills</p>
+<div class="row">
+  <div class="column" style="background-color:#aaa;">
+    <h2>All Resumes</h2>
+    <p>Contact</p>
+    <p>Skills</p>
+    <p>Work Experience</p>
+    <p>Projects</p>
+    <p>Education</p>
+  </div>
+  <div class="column" style="background-color:#bbb;">
+  <form action="tables/add_skill_to_resume/"></form>
+  {% for finch in finches %}
+    <div class="card">
+        <div class="card-content">
+              <label class="card-title">
+                <input type="checkbox" id="species" name="species" value="species"/>
+                <span>{{ finch.species }}</span>
+              </label>
         </div>
+      </div>
+    {% endfor %}
+    <input type="submit" value="Add Skills to Resume">
+    </form>
+    <form action="/tables/create_skill/" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Add New Skill">
+  </form>
+  </div>
+  <div class="column" style="background-color:#ccc;">
+    <h2>Resume Template</h2>
+    <div id="sortTrue" class="list-group">
+      <div class="list-group-item">Contact</div>
+      <div class="list-group-item">Skills</div>
+      <div class="list-group-item">Work Experience</div>
+      <div class="list-group-item">Projects</div>
+      <div class="list-group-item">Education</div>
+    </div>
+  </div>
+</div>
 
-        <ul class="collapsible">
-            <li>
-              <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-          </ul>
-    </div>
-</div>
-<div class='row'>
-    <div class="lane droptarget">
-        <h1>Resume Template</h1>
-    </div>
-</div>
+{% endblock %}
+
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const elems = document.querySelectorAll('.collapsible');
-        const instances = M.Collapsible.init(elems, options);
-    });
+  // sort: true
+Sortable.create(sortTrue, {
+  group: "sorting",
+  sort: true
+});
 
-  // Or with jQuery
-
-  $(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        document.addEventListener('dragstart', function(e){
-            e.target.id = 'drag-' + new Date().getTime()
-            e.dataTransfer.setData('source', e.target.id)
-            
-        })
-        document.addEventListener('dragenter', function(e) {
-            if (e.target.className === 'lane droptarget') {
-                e.target.style.background = 'rgba(98, 201, 255)'
-            }
-    
-        })
-        document.addEventListener('dragover', function(e){
-            e.preventDefault()
-        })
-        document.addEventListener('dragleave', function(e){
-            if (e.target.className === 'lane droptarget') {
-                e.target.style.background = ''
-            }
-        })
-        document.addEventListener('drop', function(e){
-            if (e.target.className == 'lane droptarget'){
-                const data = e.dataTransfer.getData('source')
-                const element = document.getElementById(data)
-                e.target.appendChild(element) 
-                e.target.style.background = ''
-            }
-        })
-    })
+// sort: false
+Sortable.create(sortFalse, {
+  group: "sorting",
+  sort: false
+});
 </script>
-
-    
-    {% endblock %}
-
-
